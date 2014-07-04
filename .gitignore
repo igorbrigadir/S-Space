@@ -1,0 +1,12 @@
+*.class
+*.project
+*.classpath
+*.settings
+*.*~
+target/
+.svn/
+# Package Files #
+*.jar
+*.war
+*.ear
+twitter4j.properties
