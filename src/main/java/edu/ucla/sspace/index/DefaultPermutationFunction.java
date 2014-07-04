@@ -51,7 +51,7 @@ public class DefaultPermutationFunction
 
     private static final long serialVersionUID = 1L;
 
-    private static final Random RANDOM = RandomIndexVectorGenerator.RANDOM;
+    private static Random RANDOM = new Random();
 
     /**
      * A mapping from a distance to a corresponding permutation.
@@ -63,6 +63,14 @@ public class DefaultPermutationFunction
      */
     public DefaultPermutationFunction() {
         permutationToReordering = new TIntObjectHashMap<Function>();
+    }
+    
+    /**
+     * Creates an empty {@code DefaultPermutationFunction}.
+     */
+    public DefaultPermutationFunction(Random randomSeed) {
+        permutationToReordering = new TIntObjectHashMap<Function>();
+        RANDOM = randomSeed;
     }
 
     /**

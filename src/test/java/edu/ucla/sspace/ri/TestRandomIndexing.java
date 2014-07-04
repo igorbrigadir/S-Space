@@ -27,16 +27,20 @@ import java.util.*;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import edu.ucla.sspace.index.RandomIndexVectorGenerator;
 import static org.junit.Assert.*;
 
 
 public class TestRandomIndexing {
 
-    private static final long SEED = 42L;
-
     @Test public void test() throws IOException {
-        RandomIndexing ri = new RandomIndexing(new Properties());
-        ri.RANDOM.setSeed(SEED);
+    	
+    	Properties parameters = new Properties();
+    	
+    	parameters.put(RandomIndexVectorGenerator.INDEX_VECTOR_RANDOMSEED_PROPERTY, "5");
+    	
+        RandomIndexing ri = new RandomIndexing(parameters);
+        //ri.RANDOM.setSeed(SEED);
 
         String text = "the quick brown fox jumps over the lazy dog";
         ri.processDocument(new BufferedReader(new StringReader(text)));

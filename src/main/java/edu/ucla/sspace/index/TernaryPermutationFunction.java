@@ -48,7 +48,7 @@ public class TernaryPermutationFunction
 
     private static final long serialVersionUID = 1L;
 
-    private static final Random RANDOM = RandomIndexVectorGenerator.RANDOM;
+    private static Random RANDOM = new Random();
 
     /**
      * A mapping from a distance to a corresponding permutation.
@@ -60,6 +60,11 @@ public class TernaryPermutationFunction
      */
     public TernaryPermutationFunction() {
         permutationToReordering = new HashMap<Integer,Function>();
+    }
+    
+    public TernaryPermutationFunction(Random randomSeed) {
+        permutationToReordering = new HashMap<Integer,Function>();
+        RANDOM = randomSeed;
     }
 
     /**

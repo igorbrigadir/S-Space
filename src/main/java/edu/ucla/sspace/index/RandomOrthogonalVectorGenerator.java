@@ -27,7 +27,6 @@ import edu.ucla.sspace.vector.TernaryVector;
 import edu.ucla.sspace.vector.VectorMath;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -74,7 +73,7 @@ public class RandomOrthogonalVectorGenerator
      * A random number generator that can be accessed to other classes which
      * will rely on the same source of random values.
      */
-    public static final Random RANDOM = new Random();
+    private static Random RANDOM = new Random();
 
     /**
      * The prefix for naming public properties.
@@ -98,6 +97,12 @@ public class RandomOrthogonalVectorGenerator
 
     public static final String VECTOR_LENGTH_PROPERTY = 
         PROPERTY_PREFIX + ".length";
+    
+    /**
+     * The property to specify the random seed used.
+     */
+    public static final String INDEX_VECTOR_RANDOMSEED_PROPERTY = 
+        PROPERTY_PREFIX + ".randomSeed";
 
     /**
      * The default number of values to set in an {@link TernaryVector}.
@@ -173,6 +178,12 @@ public class RandomOrthogonalVectorGenerator
             ? Double.parseDouble(stdProp)
             : DEFAULT_VECTOR_STANDARD_DEVIATION;
 
+        String randomSeedProp =
+            properties.getProperty(INDEX_VECTOR_RANDOMSEED_PROPERTY);
+        RANDOM = (randomSeedProp != null)
+               ? new Random(Long.parseLong(randomSeedProp))
+               : new Random();
+            
         this.vectorLength = vectorLength;
 
         generatedVectors = new ArrayList<DoubleVector>();

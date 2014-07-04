@@ -69,7 +69,7 @@ public class RandomIndexVectorGenerator
      * A random number generator that can be accessed to other classes which
      * will rely on the same source of random values.
      */
-    public static final Random RANDOM = new Random();
+    private Random RANDOM;
 
     /**
      * The prefix for naming public properties.
@@ -91,6 +91,12 @@ public class RandomIndexVectorGenerator
     public static final String INDEX_VECTOR_VARIANCE_PROPERTY = 
         PROPERTY_PREFIX + ".variance";
 
+    /**
+     * The property to specify the random seed used.
+     */
+    public static final String INDEX_VECTOR_RANDOMSEED_PROPERTY = 
+        PROPERTY_PREFIX + ".randomSeed";
+    
     /**
      * The default number of values to set in an {@link TernaryVector}.
      */
@@ -145,6 +151,12 @@ public class RandomIndexVectorGenerator
         variance = (varianceProp != null)
             ? Integer.parseInt(varianceProp)
             : DEFAULT_INDEX_VECTOR_VARIANCE;
+            
+        String randomSeedProp =
+            properties.getProperty(INDEX_VECTOR_RANDOMSEED_PROPERTY);
+        RANDOM = (randomSeedProp != null)
+                    ? new Random(Long.parseLong(randomSeedProp))
+                    : new Random();
     }
 
     /**

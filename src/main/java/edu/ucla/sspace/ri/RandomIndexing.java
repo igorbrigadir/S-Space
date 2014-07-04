@@ -251,7 +251,7 @@ public class RandomIndexing implements SemanticSpace, Filterable {
     //
     // NOTE: intentionally package-private to allow other RI-related classes to
     // based their randomness on a this class's seed.
-    static final Random RANDOM = new Random();
+    //static final Random RANDOM = new Random();
 
     /**
      * A mapping from each word to its associated index vector
