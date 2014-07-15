@@ -23,16 +23,12 @@ package edu.ucla.sspace.ri;
 
 import edu.ucla.sspace.common.Filterable;
 import edu.ucla.sspace.common.SemanticSpace;
-
 import edu.ucla.sspace.index.IntegerVectorGenerator;
 import edu.ucla.sspace.index.PermutationFunction;
 import edu.ucla.sspace.index.RandomIndexVectorGenerator;
 import edu.ucla.sspace.index.TernaryPermutationFunction;
-
 import edu.ucla.sspace.text.IteratorFactory;
-
 import edu.ucla.sspace.util.GeneratorMap;
-
 import edu.ucla.sspace.vector.CompactSparseIntegerVector;
 import edu.ucla.sspace.vector.DenseIntVector;
 import edu.ucla.sspace.vector.IntegerVector;
@@ -42,19 +38,18 @@ import edu.ucla.sspace.vector.Vectors;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-
 import java.lang.reflect.Constructor;
-
 import java.util.ArrayDeque;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
-
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -377,8 +372,16 @@ public class RandomIndexing implements SemanticSpace, Filterable {
         wordToMeaning.clear();
     }
     
-    public Map<String,IntegerVector> getSemantics() {
-    	return Collections.unmodifiableMap(wordToMeaning);
+    public HashMap<String,int[]> getSemantics() {
+    
+    	HashMap<String,int[]> semantics = new HashMap<String,int[]>();
+    	
+    	
+    	for (Entry<String, IntegerVector> s : wordToMeaning.entrySet()) {
+    		semantics.put(s.getKey(), s.getValue().toArray());
+    	}
+
+    	return semantics;
     }
 
     /**

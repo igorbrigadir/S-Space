@@ -59,6 +59,7 @@ import java.util.Properties;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
+import java.util.Map.Entry;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -343,8 +344,15 @@ public class ReflectiveRandomIndexing implements SemanticSpace, Filterable {
         return Vectors.immutable(v);
     }
     
-    public Map<String,IntegerVector> getSemantics() {
-    	return Collections.unmodifiableMap(termToReflectiveSemantics);
+    public HashMap<String,int[]> getSemantics() {
+        
+    	HashMap<String,int[]> semantics = new HashMap<String,int[]>();
+    	    	
+    	for (Entry<String, IntegerVector> s : termToReflectiveSemantics.entrySet()) {
+    		semantics.put(s.getKey(), s.getValue().toArray());
+    	}
+
+    	return semantics;
     }
 
     /**
