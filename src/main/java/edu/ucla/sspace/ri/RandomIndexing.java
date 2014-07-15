@@ -376,6 +376,10 @@ public class RandomIndexing implements SemanticSpace, Filterable {
     public void clearSemantics() {
         wordToMeaning.clear();
     }
+    
+    public Map<String,IntegerVector> getSemantics() {
+    	return Collections.unmodifiableMap(wordToMeaning);
+    }
 
     /**
      * Returns the current semantic vector for the provided word, or if the word

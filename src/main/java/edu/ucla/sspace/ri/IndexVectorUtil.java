@@ -42,43 +42,44 @@ import java.util.Map;
  */
 public class IndexVectorUtil {
 
-    /**
-     * Uninstantiable
-     */
-    private IndexVectorUtil() { }
+	/**
+	 * Uninstantiable
+	 */
+	private IndexVectorUtil() { }
 
-    /**
-     * Saves the mapping from word to {@link TernaryVector} to the specified
-     * file.
-     */
-    public static void save(Map<String,TernaryVector> wordToIndexVector, 
-                            File output) {
-        try {
-            FileOutputStream fos = new FileOutputStream(output);
-            ObjectOutputStream outStream = new ObjectOutputStream(fos);
-            outStream.writeObject(wordToIndexVector);
-            outStream.close();
-        } catch (IOException ioe) {
-            throw new IOError(ioe);
-        }
-    }
+	/**
+	 * Saves the mapping from word to {@link TernaryVector} to the specified
+	 * file.
+	 */
+	public static void save(Map<String,TernaryVector> wordToIndexVector, 
+			File output) {
+		try {
+			FileOutputStream fos = new FileOutputStream(output);
+			ObjectOutputStream outStream = new ObjectOutputStream(fos);
+			outStream.writeObject(wordToIndexVector);
+			outStream.close();
+		} catch (IOException ioe) {
+			throw new IOError(ioe);
+		}
+	}
 
-    /**
-     * Loads a mapping from word to {@link TernaryVector} from the file
-     */
-    @SuppressWarnings("unchecked")
-    public static Map<String,TernaryVector> load(File indexVectorFile) {
-        try {
-            FileInputStream fis = new FileInputStream(indexVectorFile);
-            ObjectInputStream inStream = new ObjectInputStream(fis);
-            Map<String, TernaryVector> vectorMap = 
-                (Map<String, TernaryVector>) inStream.readObject();
-            inStream.close();
-            return vectorMap;
-        } catch (IOException ioe) {
-            throw new IOError(ioe);
-        } catch (ClassNotFoundException cnfe) {
-            throw new Error(cnfe);
-        }
-    }
+
+	/**
+	 * Loads a mapping from word to {@link TernaryVector} from the file
+	 */
+	@SuppressWarnings("unchecked")
+	public static Map<String,TernaryVector> load(File indexVectorFile) {
+		try {
+			FileInputStream fis = new FileInputStream(indexVectorFile);
+			ObjectInputStream inStream = new ObjectInputStream(fis);
+			Map<String, TernaryVector> vectorMap = 
+					(Map<String, TernaryVector>) inStream.readObject();
+			inStream.close();
+			return vectorMap;
+		} catch (IOException ioe) {
+			throw new IOError(ioe);
+		} catch (ClassNotFoundException cnfe) {
+			throw new Error(cnfe);
+		}
+	}
 }

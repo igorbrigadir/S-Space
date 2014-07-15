@@ -23,15 +23,11 @@ package edu.ucla.sspace.rri;
 
 import edu.ucla.sspace.common.Filterable;
 import edu.ucla.sspace.common.SemanticSpace;
-
 import edu.ucla.sspace.index.PermutationFunction;
 import edu.ucla.sspace.index.RandomIndexVectorGenerator;
 import edu.ucla.sspace.index.TernaryPermutationFunction;
-
 import edu.ucla.sspace.text.IteratorFactory;
-
 import edu.ucla.sspace.util.WorkerThread;
-
 import edu.ucla.sspace.vector.CompactSparseIntegerVector;
 import edu.ucla.sspace.vector.DenseIntVector;
 import edu.ucla.sspace.vector.IntegerVector;
@@ -52,9 +48,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOError;
 import java.io.IOException;
-
 import java.lang.reflect.Constructor;
-
 import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.HashMap;
@@ -65,15 +59,11 @@ import java.util.Properties;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.Semaphore;
-
-
 import java.util.concurrent.atomic.AtomicInteger;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -351,6 +341,10 @@ public class ReflectiveRandomIndexing implements SemanticSpace, Filterable {
             return null;
         }
         return Vectors.immutable(v);
+    }
+    
+    public Map<String,IntegerVector> getSemantics() {
+    	return Collections.unmodifiableMap(termToReflectiveSemantics);
     }
 
     /**
