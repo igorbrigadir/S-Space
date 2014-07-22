@@ -37,6 +37,7 @@ import edu.ucla.sspace.vector.Vector;
 import edu.ucla.sspace.vector.Vectors;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.ArrayDeque;
@@ -256,7 +257,7 @@ public class RandomIndexing implements SemanticSpace, Filterable {
     /**
      * A mapping from each word to the vector the represents its semantics
      */
-    private final Map<String,IntegerVector> wordToMeaning;
+    public final Map<String,IntegerVector> wordToMeaning;
 
     /**
      * The number of dimensions for the semantic and index vectors.
@@ -372,8 +373,8 @@ public class RandomIndexing implements SemanticSpace, Filterable {
         wordToMeaning.clear();
     }
     
-    public HashMap<String,int[]> getSemantics() {
     
+    public HashMap<String,int[]> getSemantics() {
     	HashMap<String,int[]> semantics = new HashMap<String,int[]>();
     	
     	

@@ -169,7 +169,7 @@ public class ReflectiveRandomIndexing implements SemanticSpace, Filterable {
      * A mapping from each word to the vector the represents its semantics after
      * the second pass through the corpus.
      */
-    private final Map<String,IntegerVector> termToReflectiveSemantics;
+    public final Map<String,IntegerVector> termToReflectiveSemantics;
 
     /**
      * A mapping from each word to the vector the represents its semantics after
